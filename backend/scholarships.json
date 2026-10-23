@@ -1,0 +1,130 @@
+[
+  {
+    "name": "DAAD Study Scholarships",
+    "country": "Germany",
+    "type": "Scholarship",
+    "url": "https://www.daad.de/en/study-and-research-in-germany/scholarships/",
+    "desc": "Monthly stipend for Master's study in Germany, awarded on academic merit and motivation.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 7.5,
+    "needs_english": true,
+    "research_level": 0,
+    "tips": [
+      "Strong motivation letter tied to a specific German programme",
+      "Check if your chosen course is on the DAAD-eligible list"
+    ]
+  },
+  {
+    "name": "Public universities in Germany (low or no tuition)",
+    "country": "Germany",
+    "type": "Route",
+    "url": "https://www.study-in-germany.de/en/",
+    "desc": "Many public universities charge little or no tuition for Master's, so the main cost is living expenses.",
+    "tuition": true,
+    "stipend": false,
+    "min_gpa": 7,
+    "needs_english": true,
+    "research_level": 0,
+    "tips": [
+      "Budget for proof of living funds for visa",
+      "Compare programme-specific admission rules"
+    ]
+  },
+  {
+    "name": "Erasmus Mundus Joint Master's",
+    "country": "Europe",
+    "type": "Scholarship",
+    "url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-masters",
+    "desc": "Multi-country Master's programmes with scholarship options, applied to through each programme.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 7.5,
+    "needs_english": true,
+    "research_level": 0,
+    "tips": [
+      "Apply per programme, each has its own deadline",
+      "Rankings are competitive, apply to several"
+    ]
+  },
+  {
+    "name": "Research assistantships (thesis-based Master's)",
+    "country": "Canada",
+    "type": "Route",
+    "url": "https://www.univcan.ca/universities/",
+    "desc": "Thesis MSc programmes often come with funding from a supervisor's grant. Contacting professors early matters most.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 7.5,
+    "needs_english": true,
+    "research_level": 1,
+    "tips": [
+      "Email professors whose papers match your projects",
+      "Attach a short, specific research pitch"
+    ]
+  },
+  {
+    "name": "Ontario Graduate Scholarship (OGS)",
+    "country": "Canada",
+    "type": "Scholarship",
+    "url": "https://osap.gov.on.ca/",
+    "desc": "Provincial merit scholarship for graduate students at Ontario universities, applied for through the university.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 8,
+    "needs_english": true,
+    "research_level": 1,
+    "tips": [
+      "Applied via your host department after admission or alongside it",
+      "Check current international-student eligibility"
+    ]
+  },
+  {
+    "name": "Mitacs Globalink Research Internship",
+    "country": "Canada",
+    "type": "Internship",
+    "url": "https://www.mitacs.ca/",
+    "desc": "Funded research internship at Canadian universities for international undergraduates. Good way to build contacts before applying for a Master's.",
+    "tuition": false,
+    "stipend": true,
+    "min_gpa": 7.5,
+    "needs_english": false,
+    "research_level": 1,
+    "tips": [
+      "Good fit while still a final-year undergrad",
+      "Pick projects close to your ML work"
+    ]
+  },
+  {
+    "name": "NUS / NTU research scholarships",
+    "country": "Singapore",
+    "type": "Scholarship",
+    "url": "https://www.nus.edu.sg/oam/scholarships",
+    "desc": "Research-based programmes in Singapore usually pair admission with a funded scholarship.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 8,
+    "needs_english": true,
+    "research_level": 1,
+    "tips": [
+      "Research track is better funded than coursework",
+      "Prior research output strengthens the case a lot"
+    ]
+  },
+  {
+    "name": "SINGA (PhD pathway)",
+    "country": "Singapore",
+    "type": "Scholarship",
+    "url": "https://www.a-star.edu.sg/Scholarships/for-graduate-studies/singapore-international-graduate-award-singa",
+    "desc": "Fully funded PhD award in Singapore. Only relevant if you are open to a PhD instead of a Master's.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 8.3,
+    "needs_english": true,
+    "research_level": 2,
+    "tips": [
+      "Needs a strong research profile",
+      "Consider after a Master's or strong undergrad research"
+    ]
+  }
+]

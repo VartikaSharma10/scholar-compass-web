@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scholar Compass</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#1d2433;--mute:#667085;--line:#e6e0d4;--acc:#c2410c;--ok:#15803d;--warn:#b45309;--bad:#b91c1c;--hero:#fdeedd;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161c;--card:#1c2029;--ink:#eceef3;--mute:#9aa3b2;--line:#2c3240;--acc:#fb923c;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;--hero:#241c18}}
+:root[data-theme="dark"]{--bg:#14161c;--card:#1c2029;--ink:#eceef3;--mute:#9aa3b2;--line:#2c3240;--acc:#fb923c;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;--hero:#241c18}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,serif;line-height:1.55}
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5;font-family:system-ui,sans-serif;font-size:.9rem}
+nav div{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+nav b{margin-right:auto;font-family:Georgia,serif;font-size:1.1rem}nav b span,h1 span{color:var(--acc)}
+nav a{color:var(--mute);text-decoration:none}nav a:hover{color:var(--acc)}
+section{max-width:960px;margin:0 auto;padding:44px 16px 8px}
+.hero{background:var(--hero);max-width:none;padding:0;border-bottom:1px solid var(--line)}
+.hero>div{max-width:960px;margin:0 auto;padding:56px 16px}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:0 0 12px}
+h2{font-size:1.6rem;margin:0 0 6px}
+.sub{color:var(--mute);font-family:system-ui,sans-serif;margin:0 0 18px;max-width:620px}
+.panel,.card,.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;font-family:system-ui,sans-serif}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.g3 .step{margin:0}.num{font-family:system-ui,sans-serif;color:var(--acc);font-weight:700}
+label{font-size:.8rem;color:var(--mute);display:block;margin-bottom:4px}
+input,select{width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;font-family:system-ui,sans-serif}
+.chips label{display:flex;align-items:center;gap:6px;margin:0;color:var(--ink);font-size:.9rem;border:1px solid var(--line);border-radius:20px;padding:5px 12px;cursor:pointer}
+.chips input{width:auto}
+button,.btn{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:10px 18px;font-size:1rem;cursor:pointer;margin-top:12px;text-decoration:none;display:inline-block;font-family:system-ui,sans-serif}
+button.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.tag{font-family:system-ui,sans-serif;font-size:.75rem;border:1px solid var(--line);border-radius:12px;padding:2px 10px;color:var(--mute)}
+.score{font-family:system-ui,sans-serif;font-weight:700;font-size:1.3rem}
+ul{margin:6px 0 0;padding-left:20px;font-family:system-ui,sans-serif;font-size:.9rem}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+a{color:var(--acc)}
+pre{white-space:pre-wrap;font-family:system-ui,sans-serif;font-size:.9rem;background:var(--bg);padding:12px;border-radius:8px;border:1px solid var(--line)}
+.tl{border-left:2px solid var(--line);margin-left:6px;padding-left:18px;font-family:system-ui,sans-serif}
+.tl div{margin-bottom:16px;position:relative}.tl div:before{content:"";position:absolute;left:-25px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.tl b{display:block}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:10px;font-family:system-ui,sans-serif}
+summary{cursor:pointer;font-weight:600}
+.chk label{display:flex;gap:8px;color:var(--ink);font-size:.95rem;margin:6px 0;cursor:pointer}.chk input{width:auto}
+#st{font-family:system-ui,sans-serif;font-size:.8rem;color:var(--mute);margin-top:8px}
+footer{max-width:960px;margin:40px auto 0;padding:24px 16px 48px;border-top:1px solid var(--line);font-family:system-ui,sans-serif;font-size:.8rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<nav><div><b>Scholar <span>Compass</span></b><a href="#how">How it works</a><a href="#match">Match</a><a href="#plan">Timeline</a><a href="#docs">Documents</a><a href="#faq">FAQ</a></div></nav>
+
+<section class="hero"><div>
+<h1>Find funded Master's routes<br>that actually <span>fit you</span></h1>
+<p class="sub">Enter your CGPA, English test status and research level. Get ranked routes across Germany, Canada, Singapore and Europe, with the gaps you still need to close.</p>
+<a class="btn" href="#match">Start matching</a>
+</div></section>
+
+<section id="how"><h2>How it works</h2><p class="sub">Three steps, no sign-up, nothing leaves your browser except the match request.</p>
+<div class="g3">
+<div class="step"><span class="num">01</span><h3>Tell us your profile</h3><p>CGPA, scale, research level, target countries and what funding you need.</p></div>
+<div class="step"><span class="num">02</span><h3>Get ranked routes</h3><p>Each route is scored on grades, English test, research expectations and funding fit.</p></div>
+<div class="step"><span class="num">03</span><h3>Close the gaps</h3><p>Follow the timeline and checklist below, then verify everything on the official page.</p></div>
+</div></section>
+
+<section id="match"><h2>Match your profile</h2><p class="sub">Change anything and re-run. Scores are a guide, not a prediction.</p>
+<div class="panel">
+<div class="grid">
+<div><label>CGPA</label><input id="cg" type="number" step="0.01" value="8.2"></div>
+<div><label>Scale</label><select id="sc"><option>10</option><option>4</option></select></div>
+<div><label>Field</label><input id="fd" value="Machine Learning"></div>
+<div><label>English test</label><select id="en"><option value="none">Not taken yet</option><option value="ielts">IELTS / TOEFL done</option></select></div>
+<div><label>Research</label><select id="rs"><option value="proj">Projects only</option><option value="pub">Paper / publication</option><option value="none">Not much yet</option></select></div>
+</div>
+<p style="margin:14px 0 6px;font-family:system-ui,sans-serif;font-size:.8rem;color:var(--mute)">Target countries</p>
+<div class="chips" id="ct"><label><input type="checkbox" value="Germany" checked>Germany</label><label><input type="checkbox" value="Canada" checked>Canada</label><label><input type="checkbox" value="Singapore" checked>Singapore</label><label><input type="checkbox" value="Europe" checked>Wider Europe</label></div>
+<p style="margin:14px 0 6px;font-family:system-ui,sans-serif;font-size:.8rem;color:var(--mute)">Funding need</p>
+<div class="chips" id="nd"><label><input type="checkbox" value="tuition" checked>Tuition waiver</label><label><input type="checkbox" value="stipend" checked>Living stipend</label></div>
+<button id="go">Rank my options</button><div id="st"></div>
+</div>
+<div id="out"></div><div id="sop"></div></section>
+
+<section id="plan"><h2>A 12-month plan</h2><p class="sub">Work backwards from your intake. Deadlines differ by programme, so treat these as phases, not dates.</p>
+<div class="tl">
+<div><b>12 to 10 months before</b>Shortlist 6 to 8 programmes. Book your English test and check if GRE is expected.</div>
+<div><b>10 to 8 months</b>Read papers from target labs. Email 3 to 5 professors with a specific, short research pitch.</div>
+<div><b>8 to 6 months</b>Draft your SOP and CV. Request recommendation letters and give referees your draft SOP.</div>
+<div><b>6 to 4 months</b>Submit applications and separate scholarship forms. Check each portal for its own deadline.</div>
+<div><b>4 to 2 months</b>Respond to interviews, accept an offer, and start visa and proof-of-funds paperwork.</div>
+<div><b>Final 2 months</b>Arrange housing, travel, insurance, and keep certified copies of every document.</div>
+</div></section>
+
+<section id="docs"><h2>Documents checklist</h2><p class="sub">Tick as you go. It saves only in this tab.</p>
+<div class="panel chk">
+<label><input type="checkbox">Passport valid well beyond your intake</label>
+<label><input type="checkbox">Consolidated marksheet and degree/provisional certificate</label>
+<label><input type="checkbox">English test score report</label>
+<label><input type="checkbox">Statement of purpose (tailored per programme)</label>
+<label><input type="checkbox">CV with projects and links</label>
+<label><input type="checkbox">2 to 3 recommendation letters</label>
+<label><input type="checkbox">Research proposal or project summary (for research tracks)</label>
+<label><input type="checkbox">Proof of funds and bank statements for visa</label>
+</div></section>
+
+<section><h2>Budget reality check</h2><p class="sub">Funding rarely covers everything. Plan for these before you celebrate an offer.</p>
+<div class="g3">
+<div class="step"><h3>One-time</h3><p>Application fees, test fees, document attestation, visa fees, flights, deposits.</p></div>
+<div class="step"><h3>Monthly</h3><p>Rent, food, transport, health insurance, phone and study material.</p></div>
+<div class="step"><h3>Safety buffer</h3><p>Keep a reserve for the first months while stipends or part-time income start.</p></div>
+</div></section>
+
+<section id="faq"><h2>FAQ</h2>
+<details><summary>Are these scores a chance of admission?</summary><p>No. They only compare your profile against typical expectations. Admission depends on competition, fit and documents.</p></details>
+<details><summary>Why are amounts and deadlines missing?</summary><p>They change every year and by programme. The official page is the only source worth trusting.</p></details>
+<details><summary>Do I need GRE?</summary><p>Often optional for Germany and Canada, sometimes recommended for competitive research tracks. Check each programme.</p></details>
+<details><summary>Is my data stored?</summary><p>No account and no storage. If the API is reachable, your profile is sent only to compute the match.</p></details>
+<details><summary>What if the API is offline?</summary><p>The page falls back to built-in scoring in your browser, so results still work.</p></details>
+</section>
+
+<footer>Scholar Compass is a planning aid, not legal or admissions advice. Verify eligibility, funding and deadlines on official pages. Funding is never guaranteed.</footer>
+
+<script>
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1")?"http://localhost:8000":""; // set your Render URL here, e.g. "https://scholarswarm-xyz.onrender.com"
+const DB=[
+  {
+    "name": "DAAD Study Scholarships",
+    "country": "Germany",
+    "type": "Scholarship",
+    "url": "https://www.daad.de/en/study-and-research-in-germany/scholarships/",
+    "desc": "Monthly stipend for Master's study in Germany, awarded on academic merit and motivation.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 7.5,
+    "needs_english": true,
+    "research_level": 0,
+    "tips": [
+      "Strong motivation letter tied to a specific German programme",
+      "Check if your chosen course is on the DAAD-eligible list"
+    ]
+  },
+  {
+    "name": "Public universities in Germany (low or no tuition)",
+    "country": "Germany",
+    "type": "Route",
+    "url": "https://www.study-in-germany.de/en/",
+    "desc": "Many public universities charge little or no tuition for Master's, so the main cost is living expenses.",
+    "tuition": true,
+    "stipend": false,
+    "min_gpa": 7,
+    "needs_english": true,
+    "research_level": 0,
+    "tips": [
+      "Budget for proof of living funds for visa",
+      "Compare programme-specific admission rules"
+    ]
+  },
+  {
+    "name": "Erasmus Mundus Joint Master's",
+    "country": "Europe",
+    "type": "Scholarship",
+    "url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-masters",
+    "desc": "Multi-country Master's programmes with scholarship options, applied to through each programme.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 7.5,
+    "needs_english": true,
+    "research_level": 0,
+    "tips": [
+      "Apply per programme, each has its own deadline",
+      "Rankings are competitive, apply to several"
+    ]
+  },
+  {
+    "name": "Research assistantships (thesis-based Master's)",
+    "country": "Canada",
+    "type": "Route",
+    "url": "https://www.univcan.ca/universities/",
+    "desc": "Thesis MSc programmes often come with funding from a supervisor's grant. Contacting professors early matters most.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 7.5,
+    "needs_english": true,
+    "research_level": 1,
+    "tips": [
+      "Email professors whose papers match your projects",
+      "Attach a short, specific research pitch"
+    ]
+  },
+  {
+    "name": "Ontario Graduate Scholarship (OGS)",
+    "country": "Canada",
+    "type": "Scholarship",
+    "url": "https://osap.gov.on.ca/",
+    "desc": "Provincial merit scholarship for graduate students at Ontario universities, applied for through the university.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 8,
+    "needs_english": true,
+    "research_level": 1,
+    "tips": [
+      "Applied via your host department after admission or alongside it",
+      "Check current international-student eligibility"
+    ]
+  },
+  {
+    "name": "Mitacs Globalink Research Internship",
+    "country": "Canada",
+    "type": "Internship",
+    "url": "https://www.mitacs.ca/",
+    "desc": "Funded research internship at Canadian universities for international undergraduates. Good way to build contacts before applying for a Master's.",
+    "tuition": false,
+    "stipend": true,
+    "min_gpa": 7.5,
+    "needs_english": false,
+    "research_level": 1,
+    "tips": [
+      "Good fit while still a final-year undergrad",
+      "Pick projects close to your ML work"
+    ]
+  },
+  {
+    "name": "NUS / NTU research scholarships",
+    "country": "Singapore",
+    "type": "Scholarship",
+    "url": "https://www.nus.edu.sg/oam/scholarships",
+    "desc": "Research-based programmes in Singapore usually pair admission with a funded scholarship.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 8,
+    "needs_english": true,
+    "research_level": 1,
+    "tips": [
+      "Research track is better funded than coursework",
+      "Prior research output strengthens the case a lot"
+    ]
+  },
+  {
+    "name": "SINGA (PhD pathway)",
+    "country": "Singapore",
+    "type": "Scholarship",
+    "url": "https://www.a-star.edu.sg/Scholarships/for-graduate-studies/singapore-international-graduate-award-singa",
+    "desc": "Fully funded PhD award in Singapore. Only relevant if you are open to a PhD instead of a Master's.",
+    "tuition": true,
+    "stipend": true,
+    "min_gpa": 8.3,
+    "needs_english": true,
+    "research_level": 2,
+    "tips": [
+      "Needs a strong research profile",
+      "Consider after a Master's or strong undergrad research"
+    ]
+  }
+];
+const $=id=>document.getElementById(id);
+const vals=id=>[...document.querySelectorAll('#'+id+' input:checked')].map(x=>x.value);
+function localMatch(p){
+const g=p.scale===4?p.cgpa*2.5:p.cgpa;
+return DB.filter(o=>!p.countries.length||p.countries.includes(o.country)).map(o=>{
+let s=50,why=[],check=[];
+if(g>=o.min_gpa+0.5){s+=20;why.push("CGPA comfortably above the typical bar")}
+else if(g>=o.min_gpa){s+=10;why.push("CGPA meets the typical bar")}
+else{s-=15;check.push("CGPA may be below the usual range here, check programme minimums")}
+if(o.needs_english){if(p.english_done)s+=10;else{s-=5;check.push("English test (IELTS/TOEFL) needed, book it early")}}
+const rl={none:0,proj:1,pub:2}[p.research];
+if(o.research_level>=2&&rl<2){s-=15;check.push("Expects strong research output, a paper would help")}
+else if(o.research_level===1&&rl>=1){s+=10;why.push("Your projects support a research pitch")}
+else if(o.research_level===1){s-=5;check.push("Needs some research evidence")}
+if(p.needs.includes('tuition')&&o.tuition)s+=5;
+if(p.needs.includes('stipend')&&o.stipend)s+=5;
+if(p.needs.includes('stipend')&&!o.stipend)check.push("Does not cover living costs on its own");
+return {...o,score:Math.max(5,Math.min(98,s)),why,check}}).sort((a,b)=>b.score-a.score)}
+async function run(){
+const body={cgpa:parseFloat($('cg').value)||0,scale:parseInt($('sc').value),english_done:$('en').value==='ielts',research:$('rs').value,countries:vals('ct'),needs:vals('nd')};
+let res,mode="Offline mode: scored in your browser";
+if(API){try{const c=new AbortController();const t=setTimeout(()=>c.abort(),7000);
+const r=await fetch(API+"/api/match",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body),signal:c.signal});clearTimeout(t);
+if(r.ok){res=await r.json();mode="Live API connected"}}catch(e){}}
+if(!res)res=localMatch(body);
+$('st').textContent=mode;
+$('out').innerHTML=res.length?res.map(o=>{const cl=o.score>=70?'ok':o.score>=50?'warn':'bad';
+return `<div class="card"><div class="top"><div><b>${o.name}</b><br><span class="tag">${o.country}</span> <span class="tag">${o.type}</span></div><div class="score ${cl}">${o.score}</div></div><p>${o.desc}</p>${o.why.length?'<ul class="ok">'+o.why.map(x=>'<li>'+x+'</li>').join('')+'</ul>':''}${o.check.length?'<ul class="warn">'+o.check.map(x=>'<li>'+x+'</li>').join('')+'</ul>':''}<ul>${o.tips.map(x=>'<li>'+x+'</li>').join('')}</ul><p><a href="${o.url}" target="_blank" rel="noopener noreferrer">Official page</a></p></div>`}).join('')+'<button class="alt" id="mk">Draft SOP outline</button>':'<div class="card">Select at least one country.</div>';
+const b=$('mk');if(b)b.onclick=sop}
+function sop(){const f=$('fd').value||"your field";
+$('sop').innerHTML=`<div class="card"><b>SOP outline</b><pre>1. Hook: the specific problem in ${f} that pulled you in, ideally from your own project.
+2. Academic base: relevant courses and CGPA (${$('cg').value}/${$('sc').value}), kept short.
+3. Project story: your best project. What was hard, what you tried, what you measured.
+4. Why this programme: 2 named professors or labs and what you want to work on.
+5. Why this country and why now.
+6. Goals: where this leads in 5 years.</pre><p style="font-family:system-ui,sans-serif;font-size:.85rem;color:var(--mute)">Structure only. Write the content yourself so it sounds like you.</p></div>`;
+$('sop').scrollIntoView({behavior:'smooth'})}
+$('go').onclick=run;run();
+</script>
+</body>
+</html>
